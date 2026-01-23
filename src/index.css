@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0c1f3f;
+  background-color: #eaf4e3;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f4fbf0 0%, #e0f0d8 40%, #f4fbf0 100%);
+}
+
+* {
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl bg-card p-6 shadow-soft;
+  }
+}
