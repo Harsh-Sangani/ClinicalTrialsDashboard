@@ -1,0 +1,101 @@
+department,study_number,invoice_number,invoice_description,cost,contract_number,payment_date,uploaded_by_email
+Oncology,CT-4810,INV-10324,Cycle maintenance visit reimbursements (batch 1),9000.00,CTR-7702,2024-01-05,melissa.yates@atriaclinical.com
+Cardiology,CT-4711,INV-10325,Device implantation visit costs (batch 2),9987.00,CTR-7603,2024-01-08,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4612,INV-10326,Monitoring kit replenishment (batch 3),10974.00,CTR-7504,2024-01-11,brielle.cooper@endocrisystems.com
+Neurology,CT-4913,INV-10327,Imaging follow-up billing (batch 4),11961.00,CTR-7805,2024-01-14,simon.park@neurotekhealth.com
+Immunology,CT-4514,INV-10328,Lab processing fees (batch 5),12948.00,CTR-7406,2024-01-17,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4415,INV-10329,Pulmonary function testing costs (batch 6),13935.00,CTR-7307,2024-01-20,kevin.tran@respiralabs.com
+Dermatology,CT-4316,INV-10330,Topical study medication shipments (batch 7),14922.00,CTR-7208,2024-01-23,nina.west@dermaclinicall.io
+Gastroenterology,CT-4217,INV-10331,Endoscopy suite usage (batch 8),15909.00,CTR-7109,2024-01-26,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4118,INV-10332,Infusion chair time (batch 9),16896.00,CTR-7010,2024-01-29,danielle.franklin@jointcaretrials.com
+Hematology,CT-4019,INV-10333,Specialty lab courier fees (batch 10),17883.00,CTR-6911,2024-02-01,josh.mercer@hematologix.org
+Oncology,CT-4820,INV-10334,Cycle maintenance visit reimbursements (batch 11),18870.00,CTR-7712,2024-02-04,melissa.yates@atriaclinical.com
+Cardiology,CT-4721,INV-10335,Device implantation visit costs (batch 12),19857.00,CTR-7613,2024-02-07,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4622,INV-10336,Monitoring kit replenishment (batch 13),9444.00,CTR-7514,2024-02-10,brielle.cooper@endocrisystems.com
+Neurology,CT-4923,INV-10337,Imaging follow-up billing (batch 14),10431.00,CTR-7815,2024-02-13,simon.park@neurotekhealth.com
+Immunology,CT-4524,INV-10338,Lab processing fees (batch 15),11418.00,CTR-7416,2024-02-16,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4425,INV-10339,Pulmonary function testing costs (batch 16),12405.00,CTR-7317,2024-02-19,kevin.tran@respiralabs.com
+Dermatology,CT-4326,INV-10340,Topical study medication shipments (batch 17),13392.00,CTR-7218,2024-02-22,nina.west@dermaclinicall.io
+Gastroenterology,CT-4227,INV-10341,Endoscopy suite usage (batch 18),14379.00,CTR-7119,2024-02-25,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4128,INV-10342,Infusion chair time (batch 19),15366.00,CTR-7020,2024-02-28,danielle.franklin@jointcaretrials.com
+Hematology,CT-4029,INV-10343,Specialty lab courier fees (batch 20),16353.00,CTR-6921,2024-03-02,josh.mercer@hematologix.org
+Oncology,CT-4830,INV-10344,Cycle maintenance visit reimbursements (batch 21),17340.00,CTR-7722,2024-03-05,melissa.yates@atriaclinical.com
+Cardiology,CT-4731,INV-10345,Device implantation visit costs (batch 22),18327.00,CTR-7623,2024-03-08,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4632,INV-10346,Monitoring kit replenishment (batch 23),19314.00,CTR-7524,2024-03-11,brielle.cooper@endocrisystems.com
+Neurology,CT-4933,INV-10347,Imaging follow-up billing (batch 24),20301.00,CTR-7825,2024-03-14,simon.park@neurotekhealth.com
+Immunology,CT-4534,INV-10348,Lab processing fees (batch 25),9888.00,CTR-7426,2024-03-17,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4435,INV-10349,Pulmonary function testing costs (batch 26),10875.00,CTR-7327,2024-03-20,kevin.tran@respiralabs.com
+Dermatology,CT-4336,INV-10350,Topical study medication shipments (batch 27),11862.00,CTR-7228,2024-03-23,nina.west@dermaclinicall.io
+Gastroenterology,CT-4237,INV-10351,Endoscopy suite usage (batch 28),12849.00,CTR-7129,2024-03-26,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4138,INV-10352,Infusion chair time (batch 29),13836.00,CTR-7030,2024-03-29,danielle.franklin@jointcaretrials.com
+Hematology,CT-4039,INV-10353,Specialty lab courier fees (batch 30),14823.00,CTR-6931,2024-04-01,josh.mercer@hematologix.org
+Oncology,CT-4840,INV-10354,Cycle maintenance visit reimbursements (batch 31),15810.00,CTR-7732,2024-04-04,melissa.yates@atriaclinical.com
+Cardiology,CT-4741,INV-10355,Device implantation visit costs (batch 32),16797.00,CTR-7633,2024-04-07,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4642,INV-10356,Monitoring kit replenishment (batch 33),17784.00,CTR-7534,2024-04-10,brielle.cooper@endocrisystems.com
+Neurology,CT-4943,INV-10357,Imaging follow-up billing (batch 34),18771.00,CTR-7835,2024-04-13,simon.park@neurotekhealth.com
+Immunology,CT-4544,INV-10358,Lab processing fees (batch 35),19758.00,CTR-7436,2024-04-16,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4445,INV-10359,Pulmonary function testing costs (batch 36),20745.00,CTR-7337,2024-04-19,kevin.tran@respiralabs.com
+Dermatology,CT-4346,INV-10360,Topical study medication shipments (batch 37),10332.00,CTR-7238,2024-04-22,nina.west@dermaclinicall.io
+Gastroenterology,CT-4247,INV-10361,Endoscopy suite usage (batch 38),11319.00,CTR-7139,2024-04-25,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4148,INV-10362,Infusion chair time (batch 39),12306.00,CTR-7040,2024-04-28,danielle.franklin@jointcaretrials.com
+Hematology,CT-4049,INV-10363,Specialty lab courier fees (batch 40),13293.00,CTR-6941,2024-05-01,josh.mercer@hematologix.org
+Oncology,CT-4850,INV-10364,Cycle maintenance visit reimbursements (batch 41),14280.00,CTR-7742,2024-05-04,melissa.yates@atriaclinical.com
+Cardiology,CT-4751,INV-10365,Device implantation visit costs (batch 42),15267.00,CTR-7643,2024-05-07,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4652,INV-10366,Monitoring kit replenishment (batch 43),16254.00,CTR-7544,2024-05-10,brielle.cooper@endocrisystems.com
+Neurology,CT-4953,INV-10367,Imaging follow-up billing (batch 44),17241.00,CTR-7845,2024-05-13,simon.park@neurotekhealth.com
+Immunology,CT-4554,INV-10368,Lab processing fees (batch 45),18228.00,CTR-7446,2024-05-16,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4455,INV-10369,Pulmonary function testing costs (batch 46),19215.00,CTR-7347,2024-05-19,kevin.tran@respiralabs.com
+Dermatology,CT-4356,INV-10370,Topical study medication shipments (batch 47),20202.00,CTR-7248,2024-05-22,nina.west@dermaclinicall.io
+Gastroenterology,CT-4257,INV-10371,Endoscopy suite usage (batch 48),21189.00,CTR-7149,2024-05-25,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4158,INV-10372,Infusion chair time (batch 49),10776.00,CTR-7050,2024-05-28,danielle.franklin@jointcaretrials.com
+Hematology,CT-4059,INV-10373,Specialty lab courier fees (batch 50),11763.00,CTR-6951,2024-05-31,josh.mercer@hematologix.org
+Oncology,CT-4860,INV-10374,Cycle maintenance visit reimbursements (batch 51),12750.00,CTR-7752,2024-06-03,melissa.yates@atriaclinical.com
+Cardiology,CT-4761,INV-10375,Device implantation visit costs (batch 52),13737.00,CTR-7653,2024-06-06,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4662,INV-10376,Monitoring kit replenishment (batch 53),14724.00,CTR-7554,2024-06-09,brielle.cooper@endocrisystems.com
+Neurology,CT-4963,INV-10377,Imaging follow-up billing (batch 54),15711.00,CTR-7855,2024-06-12,simon.park@neurotekhealth.com
+Immunology,CT-4564,INV-10378,Lab processing fees (batch 55),16698.00,CTR-7456,2024-06-15,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4465,INV-10379,Pulmonary function testing costs (batch 56),17685.00,CTR-7357,2024-06-18,kevin.tran@respiralabs.com
+Dermatology,CT-4366,INV-10380,Topical study medication shipments (batch 57),18672.00,CTR-7258,2024-06-21,nina.west@dermaclinicall.io
+Gastroenterology,CT-4267,INV-10381,Endoscopy suite usage (batch 58),19659.00,CTR-7159,2024-06-24,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4168,INV-10382,Infusion chair time (batch 59),20646.00,CTR-7060,2024-06-27,danielle.franklin@jointcaretrials.com
+Hematology,CT-4069,INV-10383,Specialty lab courier fees (batch 60),21633.00,CTR-6961,2024-06-30,josh.mercer@hematologix.org
+Oncology,CT-4870,INV-10384,Cycle maintenance visit reimbursements (batch 61),11220.00,CTR-7762,2024-07-03,melissa.yates@atriaclinical.com
+Cardiology,CT-4771,INV-10385,Device implantation visit costs (batch 62),12207.00,CTR-7663,2024-07-06,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4672,INV-10386,Monitoring kit replenishment (batch 63),13194.00,CTR-7564,2024-07-09,brielle.cooper@endocrisystems.com
+Neurology,CT-4973,INV-10387,Imaging follow-up billing (batch 64),14181.00,CTR-7865,2024-07-12,simon.park@neurotekhealth.com
+Immunology,CT-4574,INV-10388,Lab processing fees (batch 65),15168.00,CTR-7466,2024-07-15,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4475,INV-10389,Pulmonary function testing costs (batch 66),16155.00,CTR-7367,2024-07-18,kevin.tran@respiralabs.com
+Dermatology,CT-4376,INV-10390,Topical study medication shipments (batch 67),17142.00,CTR-7268,2024-07-21,nina.west@dermaclinicall.io
+Gastroenterology,CT-4277,INV-10391,Endoscopy suite usage (batch 68),18129.00,CTR-7169,2024-07-24,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4178,INV-10392,Infusion chair time (batch 69),19116.00,CTR-7070,2024-07-27,danielle.franklin@jointcaretrials.com
+Hematology,CT-4079,INV-10393,Specialty lab courier fees (batch 70),20103.00,CTR-6971,2024-07-30,josh.mercer@hematologix.org
+Oncology,CT-4880,INV-10394,Cycle maintenance visit reimbursements (batch 71),21090.00,CTR-7772,2024-08-02,melissa.yates@atriaclinical.com
+Cardiology,CT-4781,INV-10395,Device implantation visit costs (batch 72),22077.00,CTR-7673,2024-08-05,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4682,INV-10396,Monitoring kit replenishment (batch 73),11664.00,CTR-7574,2024-08-08,brielle.cooper@endocrisystems.com
+Neurology,CT-4983,INV-10397,Imaging follow-up billing (batch 74),12651.00,CTR-7875,2024-08-11,simon.park@neurotekhealth.com
+Immunology,CT-4584,INV-10398,Lab processing fees (batch 75),13638.00,CTR-7476,2024-08-14,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4485,INV-10399,Pulmonary function testing costs (batch 76),14625.00,CTR-7377,2024-08-17,kevin.tran@respiralabs.com
+Dermatology,CT-4386,INV-10400,Topical study medication shipments (batch 77),15612.00,CTR-7278,2024-08-20,nina.west@dermaclinicall.io
+Gastroenterology,CT-4287,INV-10401,Endoscopy suite usage (batch 78),16599.00,CTR-7179,2024-08-23,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4188,INV-10402,Infusion chair time (batch 79),17586.00,CTR-7080,2024-08-26,danielle.franklin@jointcaretrials.com
+Hematology,CT-4089,INV-10403,Specialty lab courier fees (batch 80),18573.00,CTR-6981,2024-08-29,josh.mercer@hematologix.org
+Oncology,CT-4890,INV-10404,Cycle maintenance visit reimbursements (batch 81),19560.00,CTR-7782,2024-09-01,melissa.yates@atriaclinical.com
+Cardiology,CT-4791,INV-10405,Device implantation visit costs (batch 82),20547.00,CTR-7683,2024-09-04,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4692,INV-10406,Monitoring kit replenishment (batch 83),21534.00,CTR-7584,2024-09-07,brielle.cooper@endocrisystems.com
+Neurology,CT-4993,INV-10407,Imaging follow-up billing (batch 84),22521.00,CTR-7885,2024-09-10,simon.park@neurotekhealth.com
+Immunology,CT-4594,INV-10408,Lab processing fees (batch 85),12108.00,CTR-7486,2024-09-13,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4495,INV-10409,Pulmonary function testing costs (batch 86),13095.00,CTR-7387,2024-09-16,kevin.tran@respiralabs.com
+Dermatology,CT-4396,INV-10410,Topical study medication shipments (batch 87),14082.00,CTR-7288,2024-09-19,nina.west@dermaclinicall.io
+Gastroenterology,CT-4297,INV-10411,Endoscopy suite usage (batch 88),15069.00,CTR-7189,2024-09-22,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4198,INV-10412,Infusion chair time (batch 89),16056.00,CTR-7090,2024-09-25,danielle.franklin@jointcaretrials.com
+Hematology,CT-4099,INV-10413,Specialty lab courier fees (batch 90),17043.00,CTR-6991,2024-09-28,josh.mercer@hematologix.org
+Oncology,CT-4810,INV-10414,Cycle maintenance visit reimbursements (batch 91),18030.00,CTR-7792,2024-10-01,melissa.yates@atriaclinical.com
+Cardiology,CT-4711,INV-10415,Device implantation visit costs (batch 92),19017.00,CTR-7693,2024-10-04,rafael.delgado@heartstonecardio.com
+Endocrinology,CT-4612,INV-10416,Monitoring kit replenishment (batch 93),20004.00,CTR-7594,2024-10-07,brielle.cooper@endocrisystems.com
+Neurology,CT-4913,INV-10417,Imaging follow-up billing (batch 94),20991.00,CTR-7895,2024-10-10,simon.park@neurotekhealth.com
+Immunology,CT-4514,INV-10418,Lab processing fees (batch 95),21978.00,CTR-7496,2024-10-13,aliya.hassan@immunosightlabs.com
+Pulmonology,CT-4415,INV-10419,Pulmonary function testing costs (batch 96),22965.00,CTR-7397,2024-10-16,kevin.tran@respiralabs.com
+Dermatology,CT-4316,INV-10420,Topical study medication shipments (batch 97),12552.00,CTR-7298,2024-10-19,nina.west@dermaclinicall.io
+Gastroenterology,CT-4217,INV-10421,Endoscopy suite usage (batch 98),13539.00,CTR-7199,2024-10-22,marco.esteban@guthealthresearch.com
+Rheumatology,CT-4118,INV-10422,Infusion chair time (batch 99),14526.00,CTR-7000,2024-10-25,danielle.franklin@jointcaretrials.com
+Hematology,CT-4019,INV-10423,Specialty lab courier fees (batch 100),15513.00,CTR-6901,2024-10-28,josh.mercer@hematologix.org
