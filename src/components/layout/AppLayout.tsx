@@ -19,7 +19,7 @@ function AppLayout() {
             <span className="text-brand-green">Brand</span>
             <span className="text-brand-navy">ing</span>
           </div>
-          <nav className="justify-self-center rounded-full bg-brand-navy px-2 py-1 shadow-soft">
+          <nav className="justify-self-center rounded-full bg-brand-navy px-1 py-1 shadow-soft">
             <div className="flex items-center gap-1">
               {navItems.map((item) => (
                 <NavLink
@@ -27,7 +27,7 @@ function AppLayout() {
                   to={item.path}
                   className={({ isActive }) =>
                     cn(
-                      "rounded-full px-5 py-2 text-sm font-semibold transition",
+                      "rounded-full px-8 py-2 text-base font-semibold transition",
                       isActive
                         ? "bg-white text-brand-navy shadow-soft"
                         : "text-white/80 hover:text-white"
