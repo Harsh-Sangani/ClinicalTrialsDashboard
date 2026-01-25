@@ -26,29 +26,25 @@ const invoiceStats = [
   { label: "Total Amount", value: "$20,045", color: "text-brand-green" },
 ];
 
-const userStatusBubbles = [
-  {
-    label: "Active",
-    value: 10,
-    color: "bg-brand-green",
-    size: 160,
-    className: "left-4 top-0 z-30",
-  },
-  {
-    label: "Offline",
-    value: 6,
-    color: "bg-[#86D38F]",
-    size: 130,
-    className: "left-0 bottom-6 z-20",
-  },
-  {
-    label: "Inactive",
-    value: 2,
-    color: "bg-slate-300",
-    size: 110,
-    className: "right-2 top-12 z-10",
-  },
+const userStatusMetrics = [
+  { label: "Active", value: 5, color: "bg-brand-green" },
+  { label: "Offline", value: 6, color: "bg-[#86D38F]" },
+  { label: "Inactive", value: 8, color: "bg-slate-300" },
 ];
+
+const bubbleLayouts = [
+  { size: 180, className: "left-0 top-0 z-30" },
+  { size: 140, className: "left-4 bottom-8 z-20" },
+  { size: 110, className: "right-0 top-24 z-10" },
+];
+
+const positionedUserBubbles = [...userStatusMetrics]
+  .sort((a, b) => b.value - a.value)
+  .map((metric, index) => ({
+    ...metric,
+    size: bubbleLayouts[index]?.size ?? 140,
+    className: bubbleLayouts[index]?.className ?? "left-0 top-0",
+  }));
 
 function HomePage() {
   return (
@@ -183,10 +179,10 @@ function HomePage() {
           className="min-h-[634px]"
           highlight={<span className="text-3xl font-black text-sky-400">18</span>}
         >
-          <div className="flex h-full flex-col items-center justify-between gap-8">
+          <div className="flex h-full flex-col items-center justify-between mt-10 gap-10">
             <div className="flex w-full flex-1 items-center justify-center">
-              <div className="relative h-72 w-full max-w-[240px]">
-                {userStatusBubbles.map((bubble) => (
+              <div className="relative h-80 w-full max-w-[240px]">
+                {positionedUserBubbles.map((bubble) => (
                   <div
                     key={bubble.label}
                     className={cn(
@@ -205,21 +201,16 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="flex w-full flex-col gap-4 text-center">
-              <div className="flex flex-wrap items-center justify-center gap-8 text-base font-semibold text-slate-800">
-                {userStatusBubbles.map((bubble) => (
-                  <div key={bubble.label} className="flex flex-col items-center gap-2">
-                    <div className="text-2xl">{bubble.value}</div>
-                    <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
-                      <span
-                        className={cn("h-2.5 w-2.5 rounded-full", bubble.color)}
-                      />
-                      <span>{bubble.label}</span>
-                    </div>
+            
+              <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-medium text-slate-700">
+                {userStatusMetrics.map((status) => (
+                  <div key={status.label} className="flex items-center gap-2">
+                    <span className={cn("h-2.5 w-2.5 rounded-full", status.color)} />
+                    <span>{status.label}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            
           </div>
         </DashboardCard>
       </div>
