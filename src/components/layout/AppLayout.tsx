@@ -14,8 +14,8 @@ function AppLayout() {
   return (
     <div className="min-h-screen bg-mint-50 text-foreground">
       <header className="border-b border-border/60 bg-transparent">
-        <div className="container grid h-20 grid-cols-[auto_1fr_auto] items-center gap-6">
-          <div className="text-2xl font-semibold tracking-tight">
+        <div className="container grid h-20 grid-cols-[1fr_auto_1fr] items-center gap-6">
+          <div className="text-2xl font-semibold tracking-tight justify-self-start">
             <span className="text-brand-green">Brand</span>
             <span className="text-brand-navy">ing</span>
           </div>
@@ -43,7 +43,7 @@ function AppLayout() {
 
           <button
             type="button"
-            className="flex items-center gap-3 rounded-full border border-border bg-white px-4 py-2 text-left text-sm font-semibold text-foreground shadow-soft"
+            className="flex items-center gap-3 rounded-full border border-border bg-white px-4 py-2 text-left text-sm font-semibold text-foreground shadow-soft justify-self-end"
           >
             <Avatar className="h-9 w-9">
               <AvatarFallback>JS</AvatarFallback>

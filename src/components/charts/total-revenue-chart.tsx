@@ -11,23 +11,17 @@ import {
 import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useRevenueTrend } from "@/hooks/useRevenueTrend";
 import { cn } from "@/lib/utils";
+import type {
+  RevenueGranularity,
+  RevenuePoint,
+  RevenueTrendQuery,
+} from "@/types/dashboard";
 
-type RevenuePoint = {
-  label: string;
-  revenue: number;
-  cost: number;
-  date?: string;
-  dateValue: string;
-};
-
-type DateRange = {
-  start: string;
-  end: string;
-};
-
-type BaseTimeframeValue = "daily" | "weekly" | "monthly";
-type TimeframeValue = BaseTimeframeValue | "custom";
+type DateRange = { start: string; end: string };
+type BaseTimeframeValue = RevenueGranularity;
+type TimeframeValue = RevenueGranularity | "custom";
 
 const timeframeOptions: { label: string; value: TimeframeValue }[] = [
   { label: "D", value: "daily" },
@@ -35,204 +29,6 @@ const timeframeOptions: { label: string; value: TimeframeValue }[] = [
   { label: "M", value: "monthly" },
   { label: "Custom", value: "custom" },
 ];
-
-const revenueDataByTimeframe: Record<BaseTimeframeValue, RevenuePoint[]> = {
-  daily: [
-    {
-      label: "Mon",
-      date: "Jan 05, 2026",
-      dateValue: "2026-01-05",
-      revenue: 210_000,
-      cost: 180_000,
-    },
-    {
-      label: "Tue",
-      date: "Jan 06, 2026",
-      dateValue: "2026-01-06",
-      revenue: 235_000,
-      cost: 190_000,
-    },
-    {
-      label: "Wed",
-      date: "Jan 07, 2026",
-      dateValue: "2026-01-07",
-      revenue: 248_000,
-      cost: 207_000,
-    },
-    {
-      label: "Thu",
-      date: "Jan 08, 2026",
-      dateValue: "2026-01-08",
-      revenue: 260_000,
-      cost: 215_000,
-    },
-    {
-      label: "Fri",
-      date: "Jan 09, 2026",
-      dateValue: "2026-01-09",
-      revenue: 255_000,
-      cost: 210_000,
-    },
-    {
-      label: "Sat",
-      date: "Jan 10, 2026",
-      dateValue: "2026-01-10",
-      revenue: 240_000,
-      cost: 205_000,
-    },
-    {
-      label: "Sun",
-      date: "Jan 11, 2026",
-      dateValue: "2026-01-11",
-      revenue: 230_000,
-      cost: 200_000,
-    },
-  ],
-  weekly: [
-    {
-      label: "W1",
-      date: "Jan 01-07, 2026",
-      dateValue: "2026-01-01",
-      revenue: 320_000,
-      cost: 290_000,
-    },
-    {
-      label: "W2",
-      date: "Jan 08-14, 2026",
-      dateValue: "2026-01-08",
-      revenue: 350_000,
-      cost: 310_000,
-    },
-    {
-      label: "W3",
-      date: "Jan 15-21, 2026",
-      dateValue: "2026-01-15",
-      revenue: 410_000,
-      cost: 360_000,
-    },
-    {
-      label: "W4",
-      date: "Jan 22-28, 2026",
-      dateValue: "2026-01-22",
-      revenue: 430_000,
-      cost: 375_000,
-    },
-    {
-      label: "W5",
-      date: "Jan 29-Feb 04, 2026",
-      dateValue: "2026-01-29",
-      revenue: 455_000,
-      cost: 395_000,
-    },
-    {
-      label: "W6",
-      date: "Feb 05-11, 2026",
-      dateValue: "2026-02-05",
-      revenue: 470_000,
-      cost: 410_000,
-    },
-    {
-      label: "W7",
-      date: "Feb 12-18, 2026",
-      dateValue: "2026-02-12",
-      revenue: 440_000,
-      cost: 390_000,
-    },
-    {
-      label: "W8",
-      date: "Feb 19-25, 2026",
-      dateValue: "2026-02-19",
-      revenue: 420_000,
-      cost: 370_000,
-    },
-  ],
-  monthly: [
-    {
-      label: "Jan",
-      date: "Jan 2026",
-      dateValue: "2026-01-01",
-      revenue: 260_000,
-      cost: 210_000,
-    },
-    {
-      label: "Feb",
-      date: "Feb 2026",
-      dateValue: "2026-02-01",
-      revenue: 310_000,
-      cost: 250_000,
-    },
-    {
-      label: "Mar",
-      date: "Mar 2026",
-      dateValue: "2026-03-01",
-      revenue: 390_000,
-      cost: 320_000,
-    },
-    {
-      label: "Apr",
-      date: "Apr 2026",
-      dateValue: "2026-04-01",
-      revenue: 350_000,
-      cost: 280_000,
-    },
-    {
-      label: "May",
-      date: "May 2026",
-      dateValue: "2026-05-01",
-      revenue: 270_000,
-      cost: 200_000,
-    },
-    {
-      label: "Jun",
-      date: "Jun 2026",
-      dateValue: "2026-06-01",
-      revenue: 360_000,
-      cost: 260_000,
-    },
-    {
-      label: "Jul",
-      date: "Jul 2026",
-      dateValue: "2026-07-01",
-      revenue: 420_000,
-      cost: 330_000,
-    },
-    {
-      label: "Aug",
-      date: "Aug 2026",
-      dateValue: "2026-08-01",
-      revenue: 500_000,
-      cost: 460_000,
-    },
-    {
-      label: "Sep",
-      date: "Sep 2026",
-      dateValue: "2026-09-01",
-      revenue: 480_000,
-      cost: 450_000,
-    },
-    {
-      label: "Oct",
-      date: "Oct 2026",
-      dateValue: "2026-10-01",
-      revenue: 430_000,
-      cost: 400_000,
-    },
-    {
-      label: "Nov",
-      date: "Nov 2026",
-      dateValue: "2026-11-01",
-      revenue: 380_000,
-      cost: 360_000,
-    },
-    {
-      label: "Dec",
-      date: "Dec 2026",
-      dateValue: "2026-12-01",
-      revenue: 460_000,
-      cost: 420_000,
-    },
-  ],
-};
 
 const currencyFormatter = (value: number) => `$${Math.round(value / 1_000)}k`;
 
@@ -256,10 +52,12 @@ const customRangeFormatter = new Intl.DateTimeFormat("en-US", {
 });
 
 function getDefaultRange(): DateRange {
-  const monthly = revenueDataByTimeframe.monthly;
+  const end = new Date();
+  const start = new Date();
+  start.setMonth(start.getMonth() - 3);
   return {
-    start: monthly[0]?.dateValue ?? "",
-    end: monthly[monthly.length - 1]?.dateValue ?? "",
+    start: start.toISOString().slice(0, 10),
+    end: end.toISOString().slice(0, 10),
   };
 }
 
@@ -269,17 +67,22 @@ export function TotalRevenueChart() {
   const [pendingRange, setPendingRange] = useState<DateRange>(getDefaultRange);
   const [isCustomPickerOpen, setIsCustomPickerOpen] = useState(false);
 
-  const customFilteredData = useMemo(
-    () => filterDataByRange(revenueDataByTimeframe.monthly, customRange),
-    [customRange]
-  );
+  const activeGranularity: BaseTimeframeValue =
+    timeframe === "custom" ? "monthly" : timeframe;
 
-  const chartData = useMemo(() => {
+  const revenueQuery = useMemo<RevenueTrendQuery>(() => {
     if (timeframe === "custom") {
-      return customFilteredData;
+      return {
+        granularity: "monthly",
+        startDate: customRange.start,
+        endDate: customRange.end,
+      };
     }
-    return revenueDataByTimeframe[timeframe];
-  }, [timeframe, customFilteredData]);
+    return { granularity: activeGranularity };
+  }, [activeGranularity, customRange.end, customRange.start, timeframe]);
+
+  const { data, isFetching, isError } = useRevenueTrend(revenueQuery);
+  const chartData = data?.data ?? [];
 
   const pendingIsValid =
     Boolean(pendingRange.start) &&
@@ -410,46 +213,53 @@ export function TotalRevenueChart() {
         </div>
       </div>
 
-      <div className="h-[320px] w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            data={chartData}
-            margin={{ top: 10, right: 24, left: 8, bottom: 0 }}
-          >
-            <CartesianGrid strokeDasharray="4 4" stroke="#E2E8F0" />
-            <XAxis
-              dataKey="label"
-              tickLine={{ stroke: "#E2E8F0" }}
-              axisLine={{ stroke: "#94A3B8" }}
-              tickMargin={12}
-              tick={{ fill: "#94A3B8", fontSize: 12 }}
-            />
-            <YAxis
-              tickFormatter={currencyFormatter}
-              tickLine={{ stroke: "#E2E8F0" }}
-              axisLine={{ stroke: "#94A3B8" }}
-              width={68}
-              tick={{ fill: "#94A3B8", fontSize: 12 }}
-            />
-            <Tooltip content={<RevenueTooltip />} cursor={{ stroke: "#CBD5F5" }} />
-            <Line
-              type="linear"
-              dataKey="cost"
-              stroke="#ef4444"
-              strokeWidth={2.5}
-              dot={{ r: 4, strokeWidth: 2, stroke: "#fff", fill: "#ef4444" }}
-              activeDot={{ r: 6, stroke: "#fff", strokeWidth: 2 }}
-            />
-            <Line
-              type="linear"
-              dataKey="revenue"
-              stroke="#16a34a"
-              strokeWidth={2.5}
-              dot={{ r: 4, strokeWidth: 2, stroke: "#fff", fill: "#16a34a" }}
-              activeDot={{ r: 6, stroke: "#fff", strokeWidth: 2 }}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+      <div className="h-[220px] w-full">
+        {isError ? (
+          <div className="flex h-full items-center justify-center rounded-2xl border border-dashed border-red-200 bg-red-50/60 text-sm text-red-500">
+            Unable to load revenue data.
+          </div>
+        ) : chartData.length === 0 ? (
+          <div className="flex h-full items-center justify-center rounded-2xl border border-dashed border-mint-200/80 bg-mint-50/60 text-sm text-slate-500">
+            {isFetching ? "Loading revenue…" : "No data for the selected range."}
+          </div>
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="4 4" stroke="#E2E8F0" />
+              <XAxis
+                dataKey="label"
+                tickLine={{ stroke: "#E2E8F0" }}
+                axisLine={{ stroke: "#94A3B8" }}
+                tickMargin={12}
+                tick={{ fill: "#94A3B8", fontSize: 12 }}
+              />
+              <YAxis
+                tickFormatter={currencyFormatter}
+                tickLine={{ stroke: "#E2E8F0" }}
+                axisLine={{ stroke: "#94A3B8" }}
+                width={68}
+                tick={{ fill: "#94A3B8", fontSize: 12 }}
+              />
+              <Tooltip content={<RevenueTooltip />} cursor={{ stroke: "#CBD5F5" }} />
+              <Line
+                type="linear"
+                dataKey="cost"
+                stroke="#ef4444"
+                strokeWidth={2.5}
+                dot={{ r: 4, strokeWidth: 2, stroke: "#fff", fill: "#ef4444" }}
+                activeDot={{ r: 6, stroke: "#fff", strokeWidth: 2 }}
+              />
+              <Line
+                type="linear"
+                dataKey="revenue"
+                stroke="#16a34a"
+                strokeWidth={2.5}
+                dot={{ r: 4, strokeWidth: 2, stroke: "#fff", fill: "#16a34a" }}
+                activeDot={{ r: 6, stroke: "#fff", strokeWidth: 2 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        )}
       </div>
     </div>
   );
@@ -465,9 +275,9 @@ function RevenueTooltip({ active, payload, label }: RevenueTooltipProps) {
   return (
     <div className="min-w-[140px] rounded-xl border border-slate-200 bg-white/95 px-4 py-3 text-xs font-semibold text-slate-600 shadow-lg backdrop-blur">
       <p className="mb-2 text-sm text-slate-800">{label}</p>
-      {point?.date ? (
+      {point?.dateLabel ? (
         <p className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-400">
-          {point.date}
+          {point.dateLabel}
         </p>
       ) : null}
       <div className="space-y-1">
@@ -503,26 +313,6 @@ function LegendPill({
       {label}
     </span>
   );
-}
-
-function filterDataByRange(data: RevenuePoint[], range: DateRange) {
-  if (!range.start || !range.end) {
-    return data;
-  }
-
-  const startTime = new Date(range.start).getTime();
-  const endTime = new Date(range.end).getTime();
-
-  if (Number.isNaN(startTime) || Number.isNaN(endTime)) {
-    return data;
-  }
-
-  const filtered = data.filter((point) => {
-    const pointTime = new Date(point.dateValue).getTime();
-    return pointTime >= startTime && pointTime <= endTime;
-  });
-
-  return filtered.length ? filtered : data;
 }
 
 function formatRangeDate(value: string) {

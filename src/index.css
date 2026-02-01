@@ -18,6 +18,28 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 
+.scrollbar-left {
+  direction: rtl;
+  scrollbar-gutter: stable both-edges;
+}
+
+.scrollbar-left > * {
+  direction: ltr;
+}
+
+.scrollbar-left::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-left::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-left::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.6);
+  border-radius: 9999px;
+}
+
 @layer components {
   .card {
     @apply rounded-2xl bg-card p-6 shadow-soft;
