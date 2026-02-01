@@ -1,11 +1,11 @@
 import { Fragment } from "react";
 
+import { TotalRevenueChart } from "@/components/charts/total-revenue-chart";
 import { DashboardCard } from "@/components/dashboard-card";
 import { cn } from "@/lib/utils";
 
 const placeholderCount = {
   alerts: 4,
-  metrics: 3,
 };
 
 const contractFilters = ["Daily", "Weekly", "Monthly", "Yearly"];
@@ -136,22 +136,7 @@ function HomePage() {
         </DashboardCard>
 
         <DashboardCard title="Total Revenue" className="min-h-[364px]">
-          <div className="flex h-full flex-col gap-6">
-            <div className="flex flex-1 items-center justify-center">
-              <div className="h-48 w-full rounded-[26px] border border-dashed border-mint-200/70 bg-gradient-to-br from-mint-50 via-white to-mint-100 shadow-inner" />
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
-              {Array.from({ length: placeholderCount.metrics }).map((_, index) => (
-                <div
-                  key={`revenue-metric-${index}`}
-                  className="space-y-2 rounded-2xl border border-dashed border-mint-200/80 bg-mint-50/70 px-4 py-3"
-                >
-                  <div className="h-3 w-1/2 rounded-full bg-mint-200" />
-                  <div className="h-4 w-3/4 rounded-full bg-mint-100" />
-                </div>
-              ))}
-            </div>
-          </div>
+          <TotalRevenueChart />
         </DashboardCard>
       </div>
 
