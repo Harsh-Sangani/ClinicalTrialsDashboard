@@ -3,6 +3,7 @@ import express from "express";
 
 import { env } from "./env";
 import { errorHandler } from "./middleware/error";
+import { guardWrites } from "./middleware/writes-guard";
 import { contractsRouter } from "./routes/contracts";
 import { dashboardRouter } from "./routes/dashboard";
 import { healthRouter } from "./routes/health";
@@ -15,6 +16,7 @@ export function createApp() {
   app.use(express.json());
 
   app.use("/api/health", healthRouter);
+  app.use(["/api/contracts", "/api/invoices"], guardWrites);
   app.use("/api/contracts", contractsRouter);
   app.use("/api/invoices", invoicesRouter);
   app.use("/api/dashboard", dashboardRouter);

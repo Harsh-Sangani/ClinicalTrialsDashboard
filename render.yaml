@@ -1,0 +1,22 @@
+# Render Blueprint for the Express API (https://render.com/docs/blueprint-spec).
+# Deploy: Render Dashboard -> New -> Blueprint -> pick this repo. Then set the
+# two secret env vars (DATABASE_URL, CORS_ORIGIN) in the service settings.
+services:
+  - type: web
+    name: ctd-api
+    runtime: node
+    plan: free
+    rootDir: server
+    # --include=dev because Render sets NODE_ENV=production, which would otherwise
+    # skip the devDependencies (typescript, prisma, tsx) needed to build.
+    buildCommand: npm install --include=dev && npx prisma migrate deploy && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: DATABASE_URL
+        sync: false # set to the Neon POOLED connection string in the dashboard
+      - key: CORS_ORIGIN
+        sync: false # set to your Netlify site URL, e.g. https://your-site.netlify.app
+      # ENABLE_WRITES intentionally omitted -> the public API stays read-only.

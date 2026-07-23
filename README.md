@@ -53,12 +53,30 @@ npm -w client run dev       # client only
 npm run build               # build both workspaces
 ```
 
-## Deployment
-- **Client** → Netlify (`netlify.toml` sets `base = "client"`). Set `VITE_API_URL`
-  to the deployed API origin.
-- **API** → any Node host (Render / Railway / Fly). Set `DATABASE_URL` (managed
-  Postgres, e.g. Neon) and `CORS_ORIGIN` (the Netlify site URL). Run
-  `npm run migrate:deploy` on release.
+## Deployment (public, read-only)
+
+Stack: **Neon** (Postgres) + **Render** (API) + **Netlify** (frontend). The public
+API is read-only — `POST/PATCH/DELETE` return `403` unless `ENABLE_WRITES=true`.
+
+1. **Database — Neon.** Create a project at neon.tech, copy the **pooled**
+   connection string (the one containing `-pooler`).
+2. **Load the schema + data into Neon** from your machine (one-time):
+   ```bash
+   cd server
+   # PowerShell:  $env:DATABASE_URL="<neon-pooled-url>"
+   DATABASE_URL="<neon-pooled-url>" npx prisma migrate deploy
+   DATABASE_URL="<neon-pooled-url>" npx prisma db seed
+   ```
+3. **API — Render.** New → Blueprint → pick this repo (`render.yaml` is detected).
+   In the service's Environment, set:
+   - `DATABASE_URL` = the Neon pooled URL
+   - `CORS_ORIGIN` = your Netlify site URL (e.g. `https://your-site.netlify.app`)
+   Deploy, then note the API URL (e.g. `https://ctd-api.onrender.com`).
+   *(Free tier sleeps after ~15 min idle; first request then takes ~50s. Upgrade
+   to a paid instance for always-on.)*
+4. **Frontend — Netlify.** In Site settings → Environment variables, set
+   `VITE_API_URL` = the Render API URL, then redeploy. `netlify.toml` already
+   builds from `client/`.
 
 ## Deferred (next pass)
 JWT auth (register/login, protected write routes) · API Dockerfile · Vitest +
