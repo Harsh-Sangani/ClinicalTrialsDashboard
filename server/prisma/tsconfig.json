@@ -1,0 +1,9 @@
+{
+  "//": "Editor-only project so Prisma scripts (seed.ts) are typechecked with the same options as src/. The build (../tsconfig.json) still emits only src.",
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true
+  },
+  "include": ["."]
+}

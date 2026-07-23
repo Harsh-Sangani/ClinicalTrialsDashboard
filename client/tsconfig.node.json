@@ -1,0 +1,15 @@
+{
+  "//": "Covers the Node-context config files so the editor typechecks them with bundler resolution + node types instead of falling back to default options.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["node"],
+    "allowImportingTsExtensions": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true
+  },
+  "include": ["vite.config.ts", "tailwind.config.ts"]
+}

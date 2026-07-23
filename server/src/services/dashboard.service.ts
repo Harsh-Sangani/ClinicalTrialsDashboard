@@ -1,18 +1,19 @@
-import { supabase } from "@/lib/supabase";
-import type { Contract } from "@/types/contracts";
-import type { Invoice } from "@/types/invoices";
+import { prisma } from "../db";
+import { serializeContract, serializeInvoice } from "../lib/serializers";
 import type {
+  Contract,
   ContractStatusBreakdown,
   ContractsSummary,
   DashboardAlert,
   DashboardAlertSegment,
   DashboardSummaryResponse,
+  Invoice,
   RevenueGranularity,
   RevenuePoint,
   RevenueTrendQuery,
   RevenueTrendResponse,
   UserStatusSummary,
-} from "@/types/dashboard";
+} from "../types/domain";
 
 const MS_PER_DAY = 86_400_000;
 const EXPIRY_WINDOW_DAYS = 7;
@@ -153,51 +154,41 @@ function buildUserStatusSummary(invoices: Invoice[], now: Date): UserStatusSumma
   };
 }
 
-export async function fetchDashboardSummary(): Promise<DashboardSummaryResponse> {
-  const [{ data: contracts, error: contractsError }, { data: invoices, error: invoicesError }] = await Promise.all([
-    supabase
-      .from("contracts")
-      .select(
-        "id, study_number, department, contract_value, balance, status, start_date, end_date, created_at"
-      ),
-    supabase
-      .from("invoices")
-      .select(
-        "id, department, study_number, invoice_number, cost, payment_date, uploaded_by_email, created_at"
-      ),
+async function loadData(): Promise<{ contracts: Contract[]; invoices: Invoice[] }> {
+  const [contractRows, invoiceRows] = await Promise.all([
+    prisma.contract.findMany(),
+    prisma.invoice.findMany(),
   ]);
+  return {
+    contracts: contractRows.map(serializeContract),
+    invoices: invoiceRows.map(serializeInvoice),
+  };
+}
 
-  if (contractsError) {
-    throw new Error(contractsError.message);
-  }
-  if (invoicesError) {
-    throw new Error(invoicesError.message);
-  }
-
-  const contractsData = (contracts ?? []) as Contract[];
-  const invoicesData = (invoices ?? []) as Invoice[];
+export async function getDashboardSummary(): Promise<DashboardSummaryResponse> {
+  const { contracts, invoices } = await loadData();
   const now = new Date();
 
   const contractsSummary: ContractsSummary = {
-    totalContracts: contractsData.length,
-    totalAmount: sum(contractsData.map((contract) => contract.contract_value ?? 0)),
-    ongoingContracts: contractsData.filter((contract) => contract.status === "Ongoing").length,
+    totalContracts: contracts.length,
+    totalAmount: sum(contracts.map((contract) => contract.contract_value ?? 0)),
+    ongoingContracts: contracts.filter((contract) => contract.status === "Ongoing").length,
   };
 
   const contractStatus: ContractStatusBreakdown = {
-    finalized: contractsData.filter((contract) => contract.status === "Finalized").length,
-    ongoing: contractsData.filter((contract) => contract.status === "Ongoing").length,
-    expired: contractsData.filter((contract) => contract.status === "Expired").length,
+    finalized: contracts.filter((contract) => contract.status === "Finalized").length,
+    ongoing: contracts.filter((contract) => contract.status === "Ongoing").length,
+    expired: contracts.filter((contract) => contract.status === "Expired").length,
   };
 
   const invoiceSummary = {
-    totalInvoices: invoicesData.length,
-    totalAmount: sum(invoicesData.map((invoice) => invoice.cost ?? 0)),
-    overdueInvoices: invoicesData.filter((invoice) => !invoice.payment_date).length,
+    totalInvoices: invoices.length,
+    totalAmount: sum(invoices.map((invoice) => invoice.cost ?? 0)),
+    overdueInvoices: invoices.filter((invoice) => !invoice.payment_date).length,
   };
 
-  const alerts = [...buildContractAlerts(contractsData, now), ...buildInvoiceAlerts(invoicesData, now)].slice(0, 20);
-  const userStatus = buildUserStatusSummary(invoicesData, now);
+  const alerts = [...buildContractAlerts(contracts, now), ...buildInvoiceAlerts(invoices, now)].slice(0, 20);
+  const userStatus = buildUserStatusSummary(invoices, now);
 
   return {
     alerts,
@@ -311,43 +302,24 @@ function assignToBucket(date: Date | null, buckets: { start: Date; end: Date }[]
   return buckets.findIndex((bucket) => date >= bucket.start && date < bucket.end);
 }
 
-export async function fetchRevenueTrend(
-  params: RevenueTrendQuery
-): Promise<RevenueTrendResponse> {
+export async function getRevenueTrend(params: RevenueTrendQuery): Promise<RevenueTrendResponse> {
   const { granularity, startDate, endDate } = params;
   const buckets = buildBuckets(granularity, startDate, endDate);
-
-  const [{ data: contracts, error: contractsError }, { data: invoices, error: invoicesError }] = await Promise.all([
-    supabase.from("contracts").select("contract_value, start_date, created_at"),
-    supabase.from("invoices").select("cost, payment_date, created_at"),
-  ]);
-
-  if (contractsError) {
-    throw new Error(contractsError.message);
-  }
-  if (invoicesError) {
-    throw new Error(invoicesError.message);
-  }
+  const { contracts, invoices } = await loadData();
 
   const revenueBuckets = Array(buckets.length).fill(0);
   const costBuckets = Array(buckets.length).fill(0);
 
-  (contracts ?? []).forEach((row) => {
-    const contract = row as Contract;
-    const contractDate =
-      toDate(contract.start_date) ??
-      toDate(contract.created_at);
+  contracts.forEach((contract) => {
+    const contractDate = toDate(contract.start_date) ?? toDate(contract.created_at);
     const bucketIndex = assignToBucket(contractDate, buckets);
     if (bucketIndex >= 0) {
       revenueBuckets[bucketIndex] += contract.contract_value ?? 0;
     }
   });
 
-  (invoices ?? []).forEach((row) => {
-    const invoice = row as Invoice;
-    const invoiceDate =
-      toDate(invoice.payment_date) ??
-      toDate(invoice.created_at);
+  invoices.forEach((invoice) => {
+    const invoiceDate = toDate(invoice.payment_date) ?? toDate(invoice.created_at);
     const bucketIndex = assignToBucket(invoiceDate, buckets);
     if (bucketIndex >= 0) {
       costBuckets[bucketIndex] += invoice.cost ?? 0;

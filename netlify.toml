@@ -1,2 +1,12 @@
-[build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_ANON_KEY,VITE_SUPABASE_URL"
+# Frontend lives in client/ (monorepo). The Express API deploys separately
+# (Render/Railway/Fly); point the client at it with VITE_API_URL in the Netlify UI.
+[build]
+  base = "client"
+  command = "npm run build"
+  publish = "dist"
+
+# SPA fallback so client-side routes resolve on refresh/deep-link.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
